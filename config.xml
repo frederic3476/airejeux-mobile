@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.applisun.airejeux" version="0.0.1">
+    <name>AireJeux</name>
+    <description>
+        Application mobile de recherche et d'ajout d'aire de jeux
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Frédéric TEISSIER
+    </author>
+    <content src="index.html"/>
+    <access origin="*"/>
+	<preference name="SplashScreen" value="www/img/logo800.png" />
+	<preference name="SplashScreenDelay" value="10000" />
+    <platform name="android">
+              <icon height="99" src="www/img/logo99.png" width="99"/>
+              <!-- tile image -->
+              <icon height="159" src="www/img/logo159.png" width="159"/>
+              <splash height="800" src="www/img/logo800.png" width="480"/>
+    </platform>
+	<feature name="plugin.google.maps">
+		<param name="API_KEY_FOR_ANDROID" value="AIzaSyASzMlQqjpnlIXH4becg-l3lWXSLhe6gn0"/>
+	</feature>
+</widget>

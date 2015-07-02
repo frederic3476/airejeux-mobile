@@ -1,0 +1,715 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline;-webkit-box-sizing:border-box;box-sizing:border-box}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+html{
+    font-size: 50%;
+    height: 100%;
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:white;
+    background-attachment:fixed;
+    font-family : 'Roboto', sans-serif;
+    font-size:2rem;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app, #app-playground {
+    width: 100%;
+}
+
+#header{
+    background: #286090;
+    /* border-bottom: 4px solid #204d74; */
+    //text-align: center;
+    /* height: 5em; */
+    /* color: black; */
+    vertical-align: middle;
+    width: 100%;
+    display: block;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    /* display: block; */
+    /* position: relative; */
+}
+
+#header h1{
+    vertical-align: middle;
+  line-height: 2.6em;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+}
+
+#header img{
+    /* padding: 1em; */
+    float: left;
+    /* width: 4%; */
+    /* display: inline-table; */
+    padding: 1em 1em 0 1em;
+}
+
+#app-playground #header h1{
+    font-size: 1.5em;
+    float: right;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+#container{
+    /* margin-top: 0px; */
+    padding-top: 118px;
+    /* overflow-y: auto; */
+}
+
+#container img{
+    /* width: 100%; */
+    /* width: 400px; */
+    max-width: 100%;
+    background-size: cover;
+    max-height: 100%;
+}
+
+#menu {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-top: #204d74;
+}
+
+.item-menu{
+    display: table-cell;
+    line-height: 30px;
+    vertical-align: middle;
+    font-size: 2.1rem;
+    border-right: 1px solid white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 25%;
+    background: #5cb85c;
+    color: #D2CCCC;
+}
+
+
+.actif{
+    border-bottom: 3px solid white;
+    background: #4cae4c;
+    color: white;
+}
+
+.hidden{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+#location-map-preview{
+    width: 100%;
+    height: 30em;
+}
+
+.content{
+    margin: 36px 20px 20px 20px;
+    text-align: center;
+}
+
+#content-1{
+    margin: 0;
+    position: relative;
+    padding-top: 12px;
+    height: 100%;
+}
+
+#content-3{
+    margin: O;
+}
+
+#footer-map{
+    position: absolute;
+    bottom: 0;
+    height: 2em;
+    width: 100%;
+    z-index: 100;
+}
+
+#footer-map select{
+    float: right;
+    padding-right: 10px;
+}
+
+
+.content input[type="text"], .content input[type="password"], .content button, .content select, #container button{
+    display: block;
+    height: 40px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.content a{
+    text-decoration: none;
+    text-align: center;
+}
+
+#remember {
+    text-align: center;
+    line-height: 4em;
+    margin: 0 auto;
+}
+
+#container button {
+    line-height: 1em;
+    text-align: center;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    font-weight: 400;
+    color: #fff;
+}
+
+#container select {
+    border-left: 0;
+    border-top: 0;
+}
+
+#ident, #form{
+    /* padding: 20px; */
+    border: 1px solid #D2CCCC;
+}
+
+#form input, #form select{
+    font-size: 1em;
+    margin-bottom: 2.5em;
+    height: 40px;
+    text-align: left;
+}
+
+#form textarea{
+    width: 80%;
+    border-bottom: 1px solid #000;
+    border-left: 0;
+    border-right: 0;
+    height: 100px;
+    border-top: 1px solid #000;
+}
+
+#ident a{
+    color: black;
+}
+
+#ident input[type="text"], #ident input[type="password"], .playground input[type="text"], #form input[type="text"]{
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid #000;
+    position: relative;
+}
+
+#reload{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    display: block;
+    width: 2em;
+    height: 2em;
+    background: url(../img/reload-small.png) no-repeat center;
+    background-size: contain;
+    //line-height: -2em;
+    /* vertical-align: middle; */
+    /* line-height: 2em; */
+}
+
+#back-index, #goto-map{
+    position: fixed;
+    top: 11px;
+    right: 0;
+    display: block;
+    width: 3em;
+    height: 3em;
+    background: url(../img/retour.svg) no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+#goto-map{
+    left: 10px;
+}
+
+.playground {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+    border: 1px solid #D2CCCC;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.playground img{
+    padding-top: 41px;
+}
+
+.playground textarea{
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid #000;
+    height: 70px;
+    border-top: 1px solid #000;
+}
+
+#note {
+  display: inline-block;
+  height: 53px;
+  margin-top: 10px;
+}
+
+#note .casquette {
+  color: #d1d1d1;
+  font-size: 20px;
+  position: relative;
+  display: inline-block;
+  line-height: 20px;
+  height: 20px;
+}
+
+#note .casquette.empty.left.big {
+  width: 13px;
+  background: url(../img/casquetteblanche_icon_left_big.png) no-repeat 0 0;
+  margin-right: -4px;
+}
+
+#note .casquette.empty.right.big {
+  width: 13px;
+  background: url(../img/casquetteblanche_icon_right_big.png) no-repeat 0 0;
+}
+
+#note .casquette.full.left.big {
+  width: 13px;
+  background: url(../img/casquetteblanche_icon_full_left_big.png) no-repeat 0 0;
+  margin-right: -4px;
+}
+
+#note .casquette.full.right.big {
+  width: 13px;
+  background: url(../img/casquetteblanche_icon_full_right_big.png) no-repeat 0 0;
+}
+
+.grise{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(../img/etoiletgrise.png) no-repeat 0 0;
+    float: right;
+}
+
+.rouge{
+    float: right;
+   display: inline-block;
+   width: 40px;
+   height: 40px;
+    background: url(../img/etoiletrouge.png) no-repeat 0 0; 
+}
+
+#spinner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3em;
+    height: 3em;
+    background: url(../img/spinner.gif) no-repeat center;
+    z-index: 100;
+}
+
+#caract{
+    /* padding-top: 20px; */
+}
+#caract li{
+    padding-bottom: 10px;
+}
+
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.panel>.panel-heading {
+  color: white;
+  background-color: #d43f3a;
+  border-color: #ddd;
+}
+
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.panel-body {
+  padding: 15px;
+  border-bottom: 1px solid #D2CCCC;
+  border-left: 1px solid #D2CCCC;
+  border-right: 1px solid #D2CCCC;
+}
+
+#myImage {
+    height: 150px;
+    /* border: 0; */
+}
+
+.depart {
+    width: 100%;
+    border: 1px solid #D2CCCC;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#depart_list{
+    text-align: left;
+    padding-left: 10px;
+    line-height: 2em;
+    vertical-align: middle;
+}
+
+#depart_list input[type="checkbox"]{
+    float: right;
+    right: 10px;
+    //width: 1.5em;
+    //height: 1.5em;
+}
+
+#depart_list input[type=checkbox] {
+  outline: none;
+  width: 58px;
+  height: 23px;
+  font-size: 11px;
+  line-height: 2;
+  display: block;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 1px solid #B9B9B9;
+  -webkit-appearance: none;
+ 
+  background-image: -webkit-gradient( 
+    linear, left top, left bottom,
+    color-stop(0, #E8E8E8),
+    color-stop(0.5, #E8E8E8),
+    color-stop(0.5, #FDFDFD),
+    color-stop(1, #FDFDFD)
+  );
+  box-shadow: 0px 1px 2px #AFAFAF inset;
+  color: #7F7F7F;
+}
+ 
+#depart_list input[type=checkbox]:checked {
+  background-image: -webkit-gradient( 
+    linear, left top, left bottom,
+    color-stop(0, #367EF8),
+    color-stop(0.5, #367EF8),
+    color-stop(0.5, #66A3F8),
+    color-stop(1, #66A3F8)
+  );
+  box-shadow: 0px 1px 2px #1449A3 inset;
+  color: #fff;
+  text-shadow: 0px -1px 1px #000;
+  border: 1px solid #99B9E8;
+}
+ 
+#depart_list input[type=checkbox]:before {
+  content: 'NON';
+  border-radius: 3px;
+  border-top: 1px solid #F7F7F7;
+  border-right: 1px solid #999999;
+  border-bottom: 1px solid: #BABABA;
+  border-left: 1px solid #BDBDBD;
+  background-image: -webkit-gradient( 
+    linear, left top, left bottom,
+    color-stop(0, #D8D8D8),
+    color-stop(1, #FBFBFB)
+  );
+  height: 20px;
+  width: 22px;
+  display: inline-block;
+  text-indent: 27px;
+}
+ 
+#depart_list input[type=checkbox]:checked:before {
+  content: 'OUI';
+  text-indent: -25px;
+  margin-left: 33px;
+}
+
+.depart span {
+    font-weight: 800;
+    display: block;
+}
+
+.screen{
+    position: fixed;
+    top: 95%;
+    width: 100%;
+    right: 0;
+    bottom: O;
+    left: O;
+    background-color: buttontext;
+}
+
+.screen2{
+    position: fixed;
+    top: 50%;
+    right: 0;
+    bottom: O;
+    left: O;
+    background-color: buttontext;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    overflow-y: auto;
+}
+
+.off-screen{
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.off-screen{
+    -webkit-transform: translateX(200%);
+    transform: translateX(200%);
+}
+
+.comment_date{
+    float: right;
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        /* background-position:left center; */
+        /* padding:75px 0px 75px 170px; */  /* padding-top + padding-bottom + text area = image height */
+        /* margin:-90px 0px 0px -198px; */  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+@media screen and (max-device-height: 480px){
+    #location-map-preview{
+        height: 480px;
+}
+
+@media screen and (min-device-height:481px) and (max-device-height:720px){
+    #location-map-preview{
+        height: 720px;
+}
+
+@media screen and (min-device-height:721px) and (max-device-height:800px){
+    #location-map-preview{
+        height: 800px;
+}
+
+@media screen and (min-device-height:801px) and (max-device-height:854px){
+    #location-map-preview{
+        height: 854px;
+}
+
+@media screen and (min-device-height:855px) and (max-device-height:960px){
+    #location-map-preview{
+        height: 960px;
+}
+
+@media screen and (min-device-height:961px) and (max-device-height:1136px){
+    #location-map-preview{
+        height: 1136px;
+}
+
+@media screen and (min-device-height:1137px) and (max-device-height:1280px){
+    #location-map-preview{
+        height: 1280px;
+}
+
+@media screen and (min-device-height:1281px) and (max-device-height:1334px){
+    #location-map-preview{
+        height: 1334px;
+}
+
+@media screen and (min-device-height:1335px) and (max-device-height:1920px){
+    #location-map-preview{
+        height: 1920px;
+}
+
+}
+
+h1 {
+    font-size: 31px;
+    font-weight: 400;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* iPhone 6 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* iPhone 6+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* Samsung Galaxy S4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+/* Styles */
+}

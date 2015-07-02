@@ -1,0 +1,702 @@
+[
+  {
+    "value": "10",
+    "hc-key": "fr-k-he",
+    "id": 34,
+    "nom": "Hérault",
+    "slug": "herault"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-is",
+    "id": 38,
+    "nom": "Isère",
+    "slug": "isere"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-dm",
+    "id": 26,
+    "nom": "Drôme",
+    "slug": "drome"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-d-ni",
+    "id": 58,
+    "nom": "Nièvre",
+    "slug": "nievre"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-i-tb",
+    "id": 90,
+    "nom": "Territoire de Belfort",
+    "slug": "territoire-de-belfort"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-c-hl",
+    "id": 43,
+    "nom": "Haute-Loire",
+    "slug": "haute-loire"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-vp",
+    "id": 75,
+    "nom": "Paris",
+    "slug": "paris"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-g-ab",
+    "id": 10,
+    "nom": "Aube",
+    "slug": "aube"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-hd",
+    "id": 92,
+    "nom": "Hauts-de-Seine",
+    "slug": "hauts-de-seine"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-f-el",
+    "id": 28,
+    "nom": "Eure-et-Loir",
+    "slug": "eure-et-loir"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-s-oi",
+    "id": 60,
+    "nom": "Oise",
+    "slug": "oise"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-av",
+    "id": 12,
+    "nom": "Aveyron",
+    "slug": "aveyron"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-f-lt",
+    "id": 45,
+    "nom": "Loiret",
+    "slug": "loiret"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-se",
+    "id": 77,
+    "nom": "Seine-et-Marne",
+    "slug": "seine-et-marne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-vm",
+    "id": 94,
+    "nom": "Val-de-Marne",
+    "slug": "val-de-marne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-k-ga",
+    "id": 30,
+    "nom": "Gard",
+    "slug": "gard"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-o-pc",
+    "id": 62,
+    "nom": "Pas-de-Calais",
+    "slug": "pas-de-calais"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-p-cv",
+    "id": 14,
+    "nom": "Calvados",
+    "slug": "calvados"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-b-lg",
+    "id": 47,
+    "nom": "Lot-et-Garonne",
+    "slug": "lot-et-garonne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-t-ds",
+    "id": 79,
+    "nom": "Deux-Sèvres",
+    "slug": "deux-sevres"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-gp-gp",
+    "id": 971,
+    "nom": "Guadeloupe",
+    "slug": "guadeloupe"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-ge",
+    "id": 32,
+    "nom": "Gers",
+    "slug": "gers"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-b-pa",
+    "id": 64,
+    "nom": "Pyrénées-Atlantiques",
+    "slug": "pyrenees-atlantiques"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-t-ct",
+    "id": 16,
+    "nom": "Charente",
+    "slug": "charente"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-r-ml",
+    "id": 49,
+    "nom": "Maine-et-Loire",
+    "slug": "maine-et-loire"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-ta",
+    "id": 81,
+    "nom": "Tarn",
+    "slug": "tarn"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-k-po",
+    "id": 66,
+    "nom": "Pyrénées-Orientales",
+    "slug": "pyrenees-orientales"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-gf-gf",
+    "id": 973,
+    "nom": "Guyane",
+    "slug": "guyane"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-ai",
+    "id": 1,
+    "nom": "Ain",
+    "slug": "ain"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-f-ch",
+    "id": 18,
+    "nom": "Cher",
+    "slug": "cher"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-g-mr",
+    "id": 51,
+    "nom": "Marne",
+    "slug": "marne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-u-vr",
+    "id": 83,
+    "nom": "Var",
+    "slug": "var"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-a-hr",
+    "id": 68,
+    "nom": "Haut-Rhin",
+    "slug": "haut-rhin"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-h-cs",
+    "id": 1001,
+    "nom": "Corse-du-sud",
+    "slug": "corse-du-sud"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-c-al",
+    "id": 3,
+    "nom": "Allier",
+    "slug": "allier"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-f-in",
+    "id": 36,
+    "nom": "Indre",
+    "slug": "indre"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-d-co",
+    "id": 21,
+    "nom": "Côte-d'or",
+    "slug": "cote-dor"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-r-my",
+    "id": 53,
+    "nom": "Mayenne",
+    "slug": "mayenne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-r-vd",
+    "id": 85,
+    "nom": "Vendée",
+    "slug": "vendee"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-i-hn",
+    "id": 70,
+    "nom": "Haute-Saône",
+    "slug": "haute-saone"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-u-ha",
+    "id": 5,
+    "nom": "Hautes-Alpes",
+    "slug": "hautes-alpes"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-l-cr",
+    "id": 23,
+    "nom": "Creuse",
+    "slug": "creuse"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-m-ms",
+    "id": 55,
+    "nom": "Meuse",
+    "slug": "meuse"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-l-hv",
+    "id": 87,
+    "nom": "Haute-Vienne",
+    "slug": "haute-vienne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-b-ld",
+    "id": 40,
+    "nom": "Landes",
+    "slug": "landes"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-r-st",
+    "id": 72,
+    "nom": "Sarthe",
+    "slug": "sarthe"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-ah",
+    "id": 7,
+    "nom": "Ardèche",
+    "slug": "ardeche"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-i-db",
+    "id": 25,
+    "nom": "Doubs",
+    "slug": "doubs"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-m-mo",
+    "id": 57,
+    "nom": "Moselle",
+    "slug": "moselle"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-d-yo",
+    "id": 89,
+    "nom": "Yonne",
+    "slug": "yonne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-lr",
+    "id": 42,
+    "nom": "Loire",
+    "slug": "loire"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-hs",
+    "id": 74,
+    "nom": "Haute-Savoie",
+    "slug": "haute-savoie"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-ag",
+    "id": 9,
+    "nom": "Ariège",
+    "slug": "ariege"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-q-eu",
+    "id": 27,
+    "nom": "Eure",
+    "slug": "eure"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-o-no",
+    "id": 59,
+    "nom": "Nord",
+    "slug": "nord"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-es",
+    "id": 91,
+    "nom": "Essonne",
+    "slug": "essonne"
+  },
+  {
+    "value": "2",
+    "hc-key": "fr-k-ad",
+    "id": 11,
+    "nom": "Aude",
+    "slug": "aude"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-r-la",
+    "id": 44,
+    "nom": "Loire-Atlantique",
+    "slug": "loire-atlantique"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-q-sm",
+    "id": 76,
+    "nom": "Seine-Maritime",
+    "slug": "seine-maritime"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-ss",
+    "id": 93,
+    "nom": "Seine-Saint-Denis",
+    "slug": "seine-saint-denis"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-e-fi",
+    "id": 29,
+    "nom": "Finistère",
+    "slug": "finistere"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-p-or",
+    "id": 61,
+    "nom": "Orne",
+    "slug": "orne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-u-bd",
+    "id": 13,
+    "nom": "Bouches-du-Rhône",
+    "slug": "bouches-du-rhone"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-lo",
+    "id": 46,
+    "nom": "Lot",
+    "slug": "lot"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-yv",
+    "id": 78,
+    "nom": "Yvelines",
+    "slug": "yvelines"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-j-vo",
+    "id": 95,
+    "nom": "Val-d'oise",
+    "slug": "val-doise"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-hg",
+    "id": 31,
+    "nom": "Haute-Garonne",
+    "slug": "haute-garonne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-c-pd",
+    "id": 63,
+    "nom": "Puy-de-Dôme",
+    "slug": "puy-de-dome"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-c-cl",
+    "id": 15,
+    "nom": "Cantal",
+    "slug": "cantal"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-k-lz",
+    "id": 48,
+    "nom": "Lozère",
+    "slug": "lozere"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-s-so",
+    "id": 80,
+    "nom": "Somme",
+    "slug": "somme"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-hp",
+    "id": 65,
+    "nom": "Hautes-Pyrénées",
+    "slug": "hautes-pyrenees"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-mq-mq",
+    "id": 972,
+    "nom": "Martinique",
+    "slug": "martinique"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-b-gi",
+    "id": 33,
+    "nom": "Gironde",
+    "slug": "gironde"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-t-cm",
+    "id": 17,
+    "nom": "Charente-Maritime",
+    "slug": "charente-maritime"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-p-mh",
+    "id": 50,
+    "nom": "Manche",
+    "slug": "manche"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-n-tg",
+    "id": 82,
+    "nom": "Tarn-et-Garonne",
+    "slug": "tarn-et-garonne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-a-br",
+    "id": 67,
+    "nom": "Bas-Rhin",
+    "slug": "bas-rhin"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-re-re",
+    "id": 974,
+    "nom": "Réunion",
+    "slug": "reunion"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-s-as",
+    "id": 2,
+    "nom": "Aisne",
+    "slug": "aisne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-e-iv",
+    "id": 35,
+    "nom": "Ile-et-Vilaine",
+    "slug": "ile-et-vilaine"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-l-cz",
+    "id": 19,
+    "nom": "Corrèze",
+    "slug": "correze"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-g-hm",
+    "id": 52,
+    "nom": "Haute-Marne",
+    "slug": "haute-marne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-u-vc",
+    "id": 84,
+    "nom": "Vaucluse",
+    "slug": "vaucluse"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-rh",
+    "id": 69,
+    "nom": "Rhône",
+    "slug": "rhone"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-h-hc",
+    "id": 1002,
+    "nom": "Haute-corse",
+    "slug": "haute-corse"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-u-ap",
+    "id": 4,
+    "nom": "Alpes-de-Haute-Provence",
+    "slug": "alpes-de-haute-provence"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-f-il",
+    "id": 37,
+    "nom": "Indre-et-Loire",
+    "slug": "indre-et-loire"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-e-ca",
+    "id": 22,
+    "nom": "Côtes-d'armor",
+    "slug": "cotes-darmor"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-m-mm",
+    "id": 54,
+    "nom": "Meurthe-et-Moselle",
+    "slug": "meurthe-et-moselle"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-t-vn",
+    "id": 86,
+    "nom": "Vienne",
+    "slug": "vienne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-i-ju",
+    "id": 39,
+    "nom": "Jura",
+    "slug": "jura"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-d-sl",
+    "id": 71,
+    "nom": "Saône-et-Loire",
+    "slug": "saone-et-loire"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-u-am",
+    "id": 6,
+    "nom": "Alpes-Maritimes",
+    "slug": "alpes-maritimes"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-b-dd",
+    "id": 24,
+    "nom": "Dordogne",
+    "slug": "dordogne"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-e-mb",
+    "id": 56,
+    "nom": "Morbihan",
+    "slug": "morbihan"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-m-vg",
+    "id": 88,
+    "nom": "Vosges",
+    "slug": "vosges"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-f-lc",
+    "id": 41,
+    "nom": "Loir-et-Cher",
+    "slug": "loir-et-cher"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-v-sv",
+    "id": 73,
+    "nom": "Savoie",
+    "slug": "savoie"
+  },
+  {
+    "value": "0",
+    "hc-key": "fr-g-an",
+    "id": 8,
+    "nom": "Ardennes",
+    "slug": "ardennes"
+  }
+]
