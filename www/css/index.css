@@ -63,10 +63,10 @@ body {
 }
 
 #header h1{
-    vertical-align: middle;
-  line-height: 2.6em;
+  vertical-align: middle;
+  line-height: 2.8em;
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
 }
 
@@ -78,25 +78,24 @@ body {
     padding: 1em 1em 0 1em;
 }
 
-#app-playground #header h1{
-    font-size: 1.5em;
-    float: right;
-    padding-right: 10px;
-    vertical-align: middle;
-}
-
 #container{
     /* margin-top: 0px; */
-    padding-top: 118px;
+    padding-top: 106px;
     /* overflow-y: auto; */
 }
 
-#container img{
+#container_playground img{
     /* width: 100%; */
     /* width: 400px; */
     max-width: 100%;
     background-size: cover;
     max-height: 100%;
+}
+
+#container_playground h1{
+    font-weight: 400;
+    font-size: 1.2em;
+    text-align: center;
 }
 
 #menu {
@@ -138,7 +137,7 @@ body {
 
 #location-map-preview{
     width: 100%;
-    height: 30em;
+    height: 32em;
 }
 
 .content{
@@ -153,8 +152,13 @@ body {
     height: 100%;
 }
 
-#content-3{
+#content-3 {
     margin: O;
+}
+
+#content-5{
+    margin: 0;
+    text-align: left;
 }
 
 #footer-map{
@@ -253,15 +257,16 @@ body {
 }
 
 #back-index, #goto-map{
-    position: fixed;
-    top: 11px;
+    position: relative;
+    //top: 11px;
     right: 0;
     display: block;
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
     background: url(../img/retour.svg) no-repeat center;
     background-size: contain;
     vertical-align: middle;
+    z-index: 100;
 }
 
 #goto-map{
@@ -279,7 +284,7 @@ body {
 }
 
 .playground img{
-    padding-top: 41px;
+    padding-top: 21px;
 }
 
 .playground textarea{
@@ -292,13 +297,13 @@ body {
     border-top: 1px solid #000;
 }
 
-#note {
+#note_playground {
   display: inline-block;
   height: 53px;
   margin-top: 10px;
 }
 
-#note .casquette {
+#note_playground .casquette {
   color: #d1d1d1;
   font-size: 20px;
   position: relative;
@@ -307,26 +312,38 @@ body {
   height: 20px;
 }
 
-#note .casquette.empty.left.big {
+#note_playground .casquette.empty.left.big {
   width: 13px;
   background: url(../img/casquetteblanche_icon_left_big.png) no-repeat 0 0;
   margin-right: -4px;
 }
 
-#note .casquette.empty.right.big {
+#note_playground .casquette.empty.right.big {
   width: 13px;
   background: url(../img/casquetteblanche_icon_right_big.png) no-repeat 0 0;
 }
 
-#note .casquette.full.left.big {
+#note_playground .casquette.full.left.big {
   width: 13px;
   background: url(../img/casquetteblanche_icon_full_left_big.png) no-repeat 0 0;
   margin-right: -4px;
 }
 
-#note .casquette.full.right.big {
+#note_playground .casquette.full.right.big {
   width: 13px;
   background: url(../img/casquetteblanche_icon_full_right_big.png) no-repeat 0 0;
+}
+
+#note_value {
+    color: white;
+    display: block;
+    background: #286090;
+    border-radius: 100%;
+    width: 2.5em;
+    line-height: 2.5em;
+    text-align: center;
+    float: right;
+    margin-top: 10px;
 }
 
 .grise{
@@ -459,7 +476,7 @@ body {
   border-radius: 3px;
   border-top: 1px solid #F7F7F7;
   border-right: 1px solid #999999;
-  border-bottom: 1px solid: #BABABA;
+  border-bottom: 1px solid #BABABA;
   border-left: 1px solid #BDBDBD;
   background-image: -webkit-gradient( 
     linear, left top, left bottom,
@@ -481,38 +498,6 @@ body {
 .depart span {
     font-weight: 800;
     display: block;
-}
-
-.screen{
-    position: fixed;
-    top: 95%;
-    width: 100%;
-    right: 0;
-    bottom: O;
-    left: O;
-    background-color: buttontext;
-}
-
-.screen2{
-    position: fixed;
-    top: 50%;
-    right: 0;
-    bottom: O;
-    left: O;
-    background-color: buttontext;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    overflow-y: auto;
-}
-
-.off-screen{
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-}
-
-.off-screen{
-    -webkit-transform: translateX(200%);
-    transform: translateX(200%);
 }
 
 .comment_date{

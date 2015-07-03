@@ -24,3 +24,9 @@ Array.prototype.inArray = function(valeur) {
 	for (var i in this) { if (this[i] === valeur) return i; }
 	return -1;
 };
+
+String.prototype.transformUTCDate = function(){
+    a = this.split('T');
+    result = a[0].split('-');
+    return a[0];
+};

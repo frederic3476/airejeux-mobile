@@ -13,6 +13,9 @@ var dateLast = null;
 var db;
 var ids = [];
 
+
+
+
 var app = {
 
     old_tab: 4,
@@ -52,16 +55,10 @@ var app = {
         
         document.addEventListener("online", app.onLine, false);
         document.addEventListener("offline", app.offLine, false);
-        var map_view = document.getElementById("location-map-preview");
-        plugin.google.maps.Map.isAvailable(function (isAvailable, message) {
-            if (isAvailable) {
-                map = plugin.google.maps.Map.getMap(map_view);
-                map.addEventListener(plugin.google.maps.event.MAP_READY, app.onMapReady);
-                map.addEventListener(plugin.google.maps.event.CAMERA_CHANGE, app.onMapCameraChanged);
-            } else {
-                alert("erreur map : " + message);
-            }
-        });
+        
+        //init map
+        app.initMap();
+        
         httpReq = new plugin.HttpRequest();
         
         window.plugins.nativepagetransitions.globalOptions.duration = 400;
@@ -90,7 +87,24 @@ var app = {
         
         app.startDb();
         
-        
+    },
+    
+    initMap: function(){
+        var map_view = document.getElementById("location-map-preview");
+        plugin.google.maps.Map.isAvailable(function (isAvailable, message) {
+            if (isAvailable) {
+                map = plugin.google.maps.Map.getMap(map_view);
+                map.addEventListener(plugin.google.maps.event.MAP_READY, app.onMapReady);
+                map.addEventListener(plugin.google.maps.event.CAMERA_CHANGE, app.onMapCameraChanged);
+                map.addEventListener(plugin.google.maps.event.MAP_CLOSE, function() {
+    
+                    alert("The map dialog is closed");
+
+                  });
+            } else {
+                alert("erreur map : " + message);
+            }
+        });
     },
     
     onLine: function(){
@@ -481,7 +495,7 @@ var app = {
         }
         else{*/
         //get playground from bd
-            /*db.transaction(function(tx) {
+            db.transaction(function(tx) {
                 tx.executeSql("select * from aire where aire.latitude between "
                                 +(latitude-perimeter)+" and "+(latitude+perimeter)+" and aire.longitude between "
                                 + (longitude-perimeter)+" and "+(longitude+perimeter),
@@ -492,7 +506,7 @@ var app = {
                                         //alert(res.rows.item(i).nom);
                                         map.addMarker({
                                             'position': new plugin.google.maps.LatLng(res.rows.item(i).latitude, res.rows.item(i).longitude),
-                                            'title': res.rows.item(i).nom + res.rows.item(i).id,
+                                            'title': res.rows.item(i).nom,
                                             'playground_id': res.rows.item(i).id,
                                             'icon': 'http://www.airejeux.com/bundles/applisunairejeux/images/playground.png',
                                             'snippet': (res.rows.item(i).average ? res.rows.item(i).average + "/5" : "")
@@ -500,7 +514,6 @@ var app = {
                                             marker.showInfoWindow();
                                             console.log("add marker : " + marker.title);
                                             marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
-                                                map.remove();
                                                 if (watchId != null)
                                                     navigator.geolocation.clearWatch(watchId);
                                                 app.showPlayground(marker.get("playground_id"));
@@ -509,8 +522,8 @@ var app = {
                                     }     
                                 }); 
             });
-            document.getElementById('spinner').classList.add("hidden");
-            */
+            //document.getElementById('spinner').classList.add("hidden");
+            
             //get playground from network
             httpReq.getJSON(api_url + "near?latitude=" + latitude + "&longitude=" + longitude + "&perimeter=" + perimeter,
                     function (status, data) {
@@ -528,7 +541,6 @@ var app = {
                                     marker.showInfoWindow();
                                     console.log("add marker : " + marker.title);
                                     marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
-                                        map.remove();
                                         if (watchId != null)
                                             navigator.geolocation.clearWatch(watchId);
                                         app.showPlayground(marker.get("playground_id"));
@@ -566,8 +578,19 @@ var app = {
                 });
     },
     showPlayground: function (id) {
+        //map.close();
         sessionStorage.setItem("playground_id", id);
-        window.plugins.nativepagetransitions.flip({"href": "playground.html"});
+        
+        document.getElementById("content-1").classList.add("hidden");
+        document.getElementById("onglet-1").classList.remove("actif");
+
+        document.getElementById("content-5").classList.remove("hidden");
+        document.getElementById("onglet-5").classList.add("actif");
+
+        app.old_tab = 5;
+        
+        app.playground.show();
+        
     },
     getDepartFromNetwork: function () {
             httpReq.getJSON(api_url + "departement/list", function (err, data) {

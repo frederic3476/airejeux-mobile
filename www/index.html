@@ -29,7 +29,7 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
+        <div id="app">
             <div id="header">
                 <h1>AireJeux.com</h1>
                 <a href="#" id="reload" title="Reload"></a>
@@ -38,6 +38,7 @@
                     <div id="onglet-2" class="item-menu">Ajouter</div>
                     <div id="onglet-3" class="item-menu">Favoris</div>
                     <div id="onglet-4" class="item-menu actif">Compte</div>
+                    <div id="onglet-5" class="item-menu hidden">Aire</div>
                 </div>
             </div>
             <div id="container">
@@ -94,14 +95,14 @@
                             <input type="text" id="nbr_jeux" name="nbr_jeux" placeholder="Nombre de jeux..."/>
                             <input type="hidden" id="img64" />
                         </form>
-                        
-                    <button id="get-picture">Prendre une photo</button>
-                    <button id="send_button">Envoyer</button>
-                    <div id="picture-preview">
-                        <img src="" id="myImage" />
-                    </div>
-                    
-                </div> 
+
+                        <button id="get-picture">Prendre une photo</button>
+                        <button id="send_button">Envoyer</button>
+                        <div id="picture-preview">
+                            <img src="" id="myImage" />
+                        </div>
+
+                    </div> 
                 </div>
                 <div id="content-3" class="content hidden">
                     <button id="add_favorite">Ajouter</button>
@@ -117,12 +118,70 @@
                         <button id="register_button">Inscription</button> 
                     </div>
                 </div>
+
+                <div id="content-5" class="content hidden">
+                    <div id="container_playground" class="playground">
+                        <h1 id="titre_playground"></h1>
+                        <img id="playground_img" src="img/imagedefaut.png"/>
+                        <span id="note_playground">
+                            <span id='note-0.5' class="casquette empty left big"></span>
+                            <span id='note-1' class="casquette empty right big"></span>
+                            <span id='note-1.5' class="casquette empty left big"></span>
+                            <span id='note-2' class="casquette empty right big"></span>
+                            <span id='note-2.5' class="casquette empty left big"></span>
+                            <span id='note-3' class="casquette empty right big"></span>
+                            <span id='note-3.5' class="casquette empty left big"></span>
+                            <span id='note-4' class="casquette empty right big"></span>
+                            <span id='note-4.5' class="casquette empty left big"></span>
+                            <span id='note-5' class="casquette empty right big"></span>
+                        </span>
+                        <span id="note_value"></span>
+                        <p id="description_playground"></p>
+                        <div id="caract">
+                            <ul>
+                                <li id="surface_playground">Surface: </li>
+                                <li id="age_playground">Age: </li>
+                                <li id="nbr_playground">Nombre de jeux: </li>
+                            </ul>
+                        </div>
+                        <div id="vote_data" class="hidden">
+
+
+                        </div>
+                        <!--<button id="comment_show">Voir les commentaires</button>-->
+                        <span>Vos commentaires</span> 
+                        <div id="comments"></div>
+                    </div>
+                    <div id="footer" class="bottom">
+                        <button id="footer_vote">Votez</button>
+                        <button id="footer_comment">Commentez</button>
+                    </div>
+                    <div id="screen_vote" class="screen2 off-screen">
+                        <select id="select_note" name="select_note">
+                            <option value="0.5">0.5</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3</option>
+                            <option value="3.5">3.5</option>
+                            <option value="4">4</option>
+                            <option value="4.5">4.5</option>
+                            <option value="5">5</option>
+                        </select>
+                        <button id="button_vote">Votez</button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
+
         <div id="spinner" class="hidden"></div>
         <script type="text/javascript" src="js/fastclick.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/prototype.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/playground2.js"></script>
     </body>
 </html>
