@@ -34,10 +34,10 @@
                 <h1>AireJeux.com</h1>
                 <a href="#" id="reload" title="Reload"></a>
                 <div id="menu">
-                    <div id="onglet-1" class="item-menu">Carte</div>
-                    <div id="onglet-2" class="item-menu">Ajouter</div>
-                    <div id="onglet-3" class="item-menu">Favoris</div>
-                    <div id="onglet-4" class="item-menu actif">Compte</div>
+                    <div id="onglet-1" class="item-menu">CARTE</div>
+                    <div id="onglet-2" class="item-menu">AJOUTER</div>
+                    <div id="onglet-3" class="item-menu">FAVORIS</div>
+                    <div id="onglet-4" class="item-menu actif">COMPTE</div>
                     <div id="onglet-5" class="item-menu hidden">Aire</div>
                 </div>
             </div>
@@ -46,10 +46,10 @@
                     <div id="location-map-preview"></div>
                     <div id="footer-map">
                         <select id="type_map">
-                            <option value="ROADMAP">Roadmap</option>
-                            <option value="SATELLITE">Satellite</option>
-                            <option value="ROADMAP">Roadmap</option>
-                            <option value="SATELLITE">Satellite</option>
+                            <option value="ROADMAP">Vue normale</option>
+                            <option value="SATELLITE">Vue satellite</option>
+                            <option value="HYBRID">Vue satellite avec informations</option>
+                            <option value="TERRAIN">Vue terrain</option>
                         </select>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <input type="text" id="nbr_jeux" name="nbr_jeux" placeholder="Nombre de jeux..."/>
+                            <input type="number" id="nbr_jeux" name="nbr_jeux" placeholder="Nombre de jeux..."/>
                             <input type="hidden" id="img64" />
                         </form>
 
@@ -152,11 +152,14 @@
                         <span>Vos commentaires</span> 
                         <div id="comments"></div>
                     </div>
+                    
+                    
                     <div id="footer" class="bottom">
                         <button id="footer_vote">Votez</button>
                         <button id="footer_comment">Commentez</button>
                     </div>
-                    <div id="screen_vote" class="screen2 off-screen">
+                </div>
+                <!--<div id="screen_vote" class="screen off-screen">
                         <select id="select_note" name="select_note">
                             <option value="0.5">0.5</option>
                             <option value="1">1</option>
@@ -170,8 +173,7 @@
                             <option value="5">5</option>
                         </select>
                         <button id="button_vote">Votez</button>
-                    </div>
-                </div>
+                </div>-->
 
 
             </div>

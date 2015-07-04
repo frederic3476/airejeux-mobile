@@ -20,9 +20,9 @@ app.playground = {
             //document.getElementById("button_vote").addEventListener("touchend", app.playground.vote, false);
             //document.getElementById("button_comment").addEventListener("touchend", app.playground.comment, false);
             //document.getElementById("favorite").addEventListener("touchend", app.playground.addFavorite, false);
-            //document.getElementById("footer_vote").addEventListener("touchend", function(){
-            //document.getElementById("screen_vote").classList.remove('off-screen');
-            //}, false);
+            document.getElementById("footer_vote").addEventListener("touchend", function(){
+            document.getElementById("screen_vote").classList.remove('off-screen');
+            }, false);
             /*document.getElementById("footer_comment").addEventListener("click", function(){
                 document.getElementById("screen_comment").classList.remove('off-screen2');
             }, false);*/
@@ -51,7 +51,8 @@ app.playground = {
                 });
         },
         
-        show: function(){
+        show: function(from){
+            // from = 1 (network) 
             app.playground.bindEvents();
             app.playground.clear();
             if (!sessionStorage.getItem("playground_id"))
@@ -61,39 +62,79 @@ app.playground = {
             else{
             id = sessionStorage.getItem("playground_id");
             
-            //document.getElementById('spinner').classList.remove("hidden");
-            httpReq.getJSON(api_url+"playgrounds/"+id, 
-                function(status, data) {
-                    //alert(data.comments);
-                    if (data.file_name)
-                    {
-                        app.playground.elems.playground_img.src = url_img+data.file_name;
-                    }
-                    else{
-                       if (sessionStorage.getItem("token"))
-                       { 
-                           app.playground.elems.playground_img.addEventListener("touchend", app.playground.changePicture, false); 
-                       }
-                    }
+            //show in local if exist
+            db.transaction(function(tx) {
+               tx.executeSql("select * from aire where aire.id= "+id,
+                                [],
+                                function(tx, res) {
+                                    if (res.rows.length === 0 || from === 1){
+                                        //network location
+                                        httpReq.getJSON(api_url+"playgrounds/"+id, 
+                                            function(status, data) {
+                                                var result = {
+                                                    nom :  data.nom,
+                                                    description : data.description,
+                                                    surface : data.surface,
+                                                    age_min : data.age_min,
+                                                    age_max : data.age_max,
+                                                    nbr_jeux : data.nbr_jeux,
+                                                    average : data.average,
+                                                    file_name : (data.file_name?data.file_name:null)
+                                                };
+                                                app.playground.applyData(result);
+                                                app.playground.addComments(data.comments);   
+                                               
+                                            });
+                                    }
+                                    else{
+                                        //local location
+                                        var result = {
+                                                    nom :  res.rows.item(0).nom,
+                                                    description : res.rows.item(0).description,
+                                                    surface : res.rows.item(0).surface,
+                                                    age_min : res.rows.item(0).age_min,
+                                                    age_max : res.rows.item(0).age_max,
+                                                    nbr_jeux : res.rows.item(0).nbr_jeux,
+                                                    average : res.rows.item(0).average,
+                                                    file_name : (res.rows.item(0).file_name?res.rows.item(0).file_name:null)
+                                                };
+                                        app.playground.applyData(result);
+                                        
+                                        //get comments from network
+                                        httpReq.getJSON(api_url+"playgrounds/"+id, 
+                                            function(status, data) {
+                                                app.playground.addComments(data.comments);  
+                                            });
+                                    }
+                                }); 
+                
+            });
+            //app.playground.addVoteSystem();
                     
-                    app.playground.elems.titre.innerHTML = data.nom;
-                    app.playground.elems.description.innerHTML = data.description;
-                    app.playground.elems.surface.innerHTML = "Surface : "+(data.surface?data.surface:"NC");
-                    app.playground.elems.age.innerHTML = "Age : de "+data.age_min+" à "+data.age_max+" ans";
-                    app.playground.elems.nbr.innerHTML = "Nombre de jeux: "+data.nbr_jeux;
-                    if (data.average) {
-                        app.playground.showNote(data.average);
-                        app.playground.elems.note_value.innerHTML = data.average;
-                    }
-                    //app.playground.addVoteSystem();
-                    
-                    
-                    app.playground.addComments(data.comments);
-                    //document.getElementById('spinner').classList.add("hidden"); 
-                    
-                });
             
         }
+        },
+        
+        applyData: function(data){
+            if (data.file_name)
+                {
+                    app.playground.elems.playground_img.src = url_img + data.file_name;
+                }
+                else {
+                    if (sessionStorage.getItem("token"))
+                    {
+                        app.playground.elems.playground_img.addEventListener("touchend", app.playground.changePicture, false);
+                    }
+                }
+                app.playground.elems.titre.innerHTML = data.nom;
+                app.playground.elems.description.innerHTML = data.description;
+                app.playground.elems.surface.innerHTML = "Surface : " + (data.surface ? data.surface : "NC");
+                app.playground.elems.age.innerHTML = "Age : de " + data.age_min + " à " + data.age_max + " ans";
+                app.playground.elems.nbr.innerHTML = "Nombre de jeux: " + data.nbr_jeux;
+                if (data.average) {
+                    app.playground.showNote(data.average);
+                    app.playground.elems.note_value.innerHTML = data.average;
+                }
         },
         
         showNote: function(average){
@@ -144,7 +185,7 @@ app.playground = {
             };
             cordovaHTTP.post(api_url+"votes", data,{"X-WSSE": token}, function(response) {
               app.makeToast('Vous avez voté avec succès !');
-              app.playground.show();
+              app.playground.show(1);
           
           }, function(response) {
                 navigator.notification.alert(response.error, function(){});
@@ -158,7 +199,7 @@ app.playground = {
             };
             cordovaHTTP.post(api_url+"comments", data,{"X-WSSE": token}, function(response) {
               app.makeToast('Vous avez commenté avec succès !');
-              app.playground.show();
+              app.playground.show(1);
           
           }, function(response) {
                 navigator.notification.alert(response.error, function(){});
@@ -195,7 +236,7 @@ app.playground = {
                     };
                     cordovaHTTP.post(api_url+"uploads/pictures.json", data,{"X-WSSE": token}, function(response) {
                       app.makeToast('Photo envoyé avec succés');
-                      app.playground.show();
+                      app.playground.show(1);
 
                   }, function(response) {
                         navigator.notification.alert(response.error, function(){});

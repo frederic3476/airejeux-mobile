@@ -45,6 +45,23 @@ var app = {
         });
         document.getElementById("add_favorite").addEventListener("touchend", app.addFavorite, false);
         document.getElementById("reload").addEventListener("touchend", app.loadMarkers, false);
+        document.getElementById("type_map").addEventListener("change", function(){
+            switch(this.value){
+                case 'ROADMAP':
+                    map.setMapTypeId(plugin.google.maps.MapTypeId.ROADMAP);
+                    break;
+                case 'HYBRID':
+                    map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
+                    break;
+                case 'SATELLITE':
+                    map.setMapTypeId(plugin.google.maps.MapTypeId.SATELLITE);
+                    break;
+                case 'TERRAIN':
+                    map.setMapTypeId(plugin.google.maps.MapTypeId.TERRAIN);
+                    break;
+                
+            }
+        }, false);
         
     },
     onDeviceReady: function () {
@@ -61,29 +78,30 @@ var app = {
         
         httpReq = new plugin.HttpRequest();
         
-        window.plugins.nativepagetransitions.globalOptions.duration = 400;
+        /*window.plugins.nativepagetransitions.globalOptions.duration = 400;
         window.plugins.nativepagetransitions.globalOptions.iosdelay = 10;
         window.plugins.nativepagetransitions.globalOptions.androiddelay = 5;
         window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
         window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
         window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
-        window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+        window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;*/
 
         if (window.localStorage.getItem("login", login) && window.localStorage.getItem("pass", pass)) {
             document.getElementById('login').value = window.localStorage.getItem("login", login);
             document.getElementById('pass').value = window.localStorage.getItem("pass", pass);
         }
-        
+        //alert('Connection type: ' + networkState);
         //get departements 
-        if (networkState === Connection.NONE)
+        /*if (networkState === Connection.NONE)
         {
             navigator.notification.alert("Vous n'êtes pas connecté à Internet", function () {
             });
+            app.getDepartFromLocal();
 
         }
-        else {
-            app.getDepartFromNetwork();
-        }
+        */
+       
+        app.getDepartFromNetwork();
         
         app.startDb();
         
@@ -108,12 +126,13 @@ var app = {
     },
     
     onLine: function(){
-        //app.getDepartFromNetwork();
+        console.log('online');
+        app.getDepartFromNetwork();
     },
     
     offLine: function(){
-        alert('offline');
-        //app.loadMarkers();
+        console.log('offline');
+        app.getDepartLocal();
     },
     
     onPause: function () {
@@ -170,12 +189,19 @@ var app = {
     },
     
     startDownload: function(){
+        document.getElementById('spinner').classList.remove("hidden");
         if (window.localStorage.getItem("favoris"))
         {
             favoris = window.localStorage.getItem("favoris");
             httpReq.getJSON(api_url + "favoris/list.json?favoris=" + favoris, function (err, data) {
                if (!err){
                        db.transaction(function(tx) {
+                           //vider la table
+                           tx.executeSql("DELETE FROM aire", [], function(tx, res){
+                                            }, 
+                                        function(e) {
+                                            alert("ERROR: " + e.message);
+                                        });
                            for (var i in data) {
                                 tx.executeSql("REPLACE INTO aire (id, nom, description, surface, longitude, latitude, age_min, age_max, nbr_jeux, file_name, average) \n\
                                             VALUES (?,?,?,?,?,?,?,?,?,?,?)", 
@@ -198,9 +224,7 @@ var app = {
                                     }
                         });
                    }
-                   else{
-                       alert('impossible de récupérer les aires de jeux favorites');
-                   }
+                   document.getElementById('spinner').classList.add("hidden");
                }); 
             }  
     },
@@ -466,34 +490,7 @@ var app = {
         map.clear();
         ids = [];
         document.getElementById('spinner').classList.remove("hidden");
-        /*if (networkState !== Connection.NONE)
-        {
-            httpReq.getJSON(api_url + "near?latitude=" + latitude + "&longitude=" + longitude + "&perimeter=" + perimeter,
-                    function (status, data) {
-                        for (var i in data) {
-                            map.addMarker({
-                                'position': new plugin.google.maps.LatLng(data[i].latitude, data[i].longitude),
-                                'title': data[i].nom,
-                                'playground_id': data[i].id,
-                                'icon': 'http://www.airejeux.com/bundles/applisunairejeux/images/playground.png',
-                                'animation': plugin.google.maps.Animation.BOUNCE,
-                                'snippet': (data[i].average ? data[i].average + "/5" : "")
-                            }, function (marker) {
-                                marker.showInfoWindow();
-                                console.log("add marker : " + marker.title);
-                                marker.addEventListener(plugin.google.maps.event.INFO_CLICK, function () {
-                                    map.remove();
-                                    if (watchId != null)
-                                        navigator.geolocation.clearWatch(watchId);
-                                    app.showPlayground(marker.get("playground_id"));
-                                });
-                            });
-                        }
-                        document.getElementById('spinner').classList.add("hidden");
-                    }
-            );
-        }
-        else{*/
+        
         //get playground from bd
             db.transaction(function(tx) {
                 tx.executeSql("select * from aire where aire.latitude between "
@@ -509,7 +506,8 @@ var app = {
                                             'title': res.rows.item(i).nom,
                                             'playground_id': res.rows.item(i).id,
                                             'icon': 'http://www.airejeux.com/bundles/applisunairejeux/images/playground.png',
-                                            'snippet': (res.rows.item(i).average ? res.rows.item(i).average + "/5" : "")
+                                            'animation': plugin.google.maps.Animation.BOUNCE,
+                                            'snippet': (res.rows.item(i).average ? res.rows.item(i).average + "/5" : "")+ " VOIR"
                                         }, function (marker) {
                                             marker.showInfoWindow();
                                             console.log("add marker : " + marker.title);
@@ -522,7 +520,6 @@ var app = {
                                     }     
                                 }); 
             });
-            //document.getElementById('spinner').classList.add("hidden");
             
             //get playground from network
             httpReq.getJSON(api_url + "near?latitude=" + latitude + "&longitude=" + longitude + "&perimeter=" + perimeter,
@@ -536,7 +533,7 @@ var app = {
                                     'playground_id': data[i].id,
                                     'icon': 'http://www.airejeux.com/bundles/applisunairejeux/images/playground.png',
                                     'animation': plugin.google.maps.Animation.BOUNCE,
-                                    'snippet': (data[i].average ? data[i].average + "/5" : "")
+                                    'snippet': (data[i].average ? data[i].average + "/5" : "")+ " VOIR"
                                 }, function (marker) {
                                     marker.showInfoWindow();
                                     console.log("add marker : " + marker.title);
@@ -551,12 +548,11 @@ var app = {
                         document.getElementById('spinner').classList.add("hidden");
                     }
             );
-        //}
     },
     onCloseCities: function () {
         map.getMyLocation(function(location){
-            document.getElementById('latitude_precise').value = location.latLng.lat;
-            document.getElementById('longitude_precise').value = location.latLng.lng;
+            document.getElementById('latitude_precise').value = latitude = location.latLng.lat;
+            document.getElementById('longitude_precise').value = longitude = location.latLng.lng;
         }, 
         function(msg){
             console.log("Erreur: " + msg);
@@ -578,7 +574,6 @@ var app = {
                 });
     },
     showPlayground: function (id) {
-        //map.close();
         sessionStorage.setItem("playground_id", id);
         
         document.getElementById("content-1").classList.add("hidden");
@@ -589,19 +584,28 @@ var app = {
 
         app.old_tab = 5;
         
-        app.playground.show();
+        app.playground.show(0);
         
     },
     getDepartFromNetwork: function () {
             httpReq.getJSON(api_url + "departement/list", function (err, data) {
             if (!err) {
                 app.makeListDepart(data);
+                window.localStorage.setItem("depart_list", JSON.stringify(data));
             }
             else {
-                app.makeToast("Erreur de récupération des données");
+                app.getDepartFromLocal();
             }
         });
     },
+    
+    getDepartFromLocal: function () {
+        if (window.localStorage.getItem("depart_list"))
+        {
+            app.makeListDepart(JSON.parse(window.localStorage.getItem("depart_list")));
+        }
+    },
+    
     makeListDepart: function (data) {
         var tab = [];
         if (window.localStorage.getItem("favoris"))
@@ -610,6 +614,7 @@ var app = {
         }
 
         main_div = document.getElementById("depart_list");
+        main_div.innerHTML = "";
         for (var i in data) {
             if (typeof data[i].nom!='undefined'){
                 var div = document.createElement('div');

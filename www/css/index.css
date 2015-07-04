@@ -64,9 +64,9 @@ body {
 
 #header h1{
   vertical-align: middle;
-  line-height: 2.8em;
+  line-height: 2.5em;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.2em;
   text-align: center;
 }
 
@@ -80,7 +80,7 @@ body {
 
 #container{
     /* margin-top: 0px; */
-    padding-top: 106px;
+    padding-top: 80px;
     /* overflow-y: auto; */
 }
 
@@ -107,9 +107,9 @@ body {
 
 .item-menu{
     display: table-cell;
-    line-height: 30px;
+    line-height: 22px;
     vertical-align: middle;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     border-right: 1px solid white;
     text-align: center;
     padding: 10px;
@@ -169,13 +169,33 @@ body {
     z-index: 100;
 }
 
-#footer-map select{
-    float: right;
-    padding-right: 10px;
+#container #footer-map select{
+    width: 100%;
+    background: #286090;
+    color: white;
+    border: 1px solid black;
+    padding: 2px;
+}
+
+#footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #286090;
+    padding: 10px auto;
+    text-align: center;
+}
+
+#container #footer button{
+    display: inline-block;
+    width: 20%;
+    height: 25px;
+    font-size: 1.5rem;
+    margin: 5px auto;
 }
 
 
-.content input[type="text"], .content input[type="password"], .content button, .content select, #container button{
+.content input[type="text"], .content input[type="password"], .content input[type="number"], .content button, .content select, #container button{
     display: block;
     height: 40px;
     width: 80%;
@@ -234,7 +254,7 @@ body {
     color: black;
 }
 
-#ident input[type="text"], #ident input[type="password"], .playground input[type="text"], #form input[type="text"]{
+#ident input[type="text"], #ident input[type="password"], .content input[type="number"], .playground input[type="text"], #form input[type="text"]{
     border-left: 0;
     border-right: 0;
     border-top: 0;
@@ -245,12 +265,12 @@ body {
 #reload{
     position: fixed;
     right: 20px;
-    top: 20px;
+    top: 10px;
     display: block;
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     background: url(../img/reload-small.png) no-repeat center;
-    background-size: contain;
+    background-size: cover;
     //line-height: -2em;
     /* vertical-align: middle; */
     /* line-height: 2em; */
@@ -502,6 +522,23 @@ body {
 
 .comment_date{
     float: right;
+}
+
+.screen{
+    position: fixed;
+    top: 0;
+    left: O;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    overflow: auto;
+}
+
+.off-screen{
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); 
 }
 
 /* Landscape layout (with min-width) */
