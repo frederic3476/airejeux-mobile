@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -31,6 +13,12 @@
     <body>
         <div id="app">
             <div id="header">
+                <button type="button" class="navbar-toggle collapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                </button>
                 <h1>AireJeux.com</h1>
                 <a href="#" id="reload" title="Reload"></a>
                 <div id="menu">
@@ -38,7 +26,6 @@
                     <div id="onglet-2" class="item-menu">AJOUTER</div>
                     <div id="onglet-3" class="item-menu">FAVORIS</div>
                     <div id="onglet-4" class="item-menu actif">COMPTE</div>
-                    <div id="onglet-5" class="item-menu hidden">Aire</div>
                 </div>
             </div>
             <div id="container">
@@ -56,13 +43,13 @@
                 <div id="content-2" class="content hidden">
                     <div id="form">
                         <form id="form_data">
-                            <input type="text" id="nom" name="nom" placeholder="Nom..."/>
+                            <input type="text" id="nom" name="nom" placeholder="Nom:"/>
                             <select id="ville" name="ville">
                                 <option value="">Recherche d'une ville proche...</option>
                             </select>
-                            <textarea name="description" id="description" placeholder="Votre description..."></textarea>
+                            <textarea name="description" id="description" placeholder="Description(500 caractères max):"></textarea>
                             <select name="surface" id="surface" >
-                                <option value="">Choisir une surface...</option>
+                                <option class="default" value="" disabled>Surface:</option>
                                 <option value="synthétique">Synthétique</option>
                                 <option value="sable">Sable</option>
                                 <option value="stabilisé">Stabilisé</option>
@@ -76,14 +63,16 @@
                             <input type="text" id="latitude_precise" name="latitude_precise" disabled="disabled"/>
                             <input type="text" id="longitude_precise" name="longitude_precise" disabled="disabled"/>
                             <select name="age_min" id="age_min">
-                                <option value="">Choisir un age minimum...</option>
+                                <option class="default" value="">Age minimum:</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
+                                <option value="3">4</option>
+                                <option value="3">5</option>
+                                <option value="3">6</option>
                             </select>
                             <select name="age_max" id="age_max">
-                                <option value="">Choisir un age maximum...</option>
-                                <option value="5">5</option>
+                                <option class="default" value="">Age maximum:</option>
                                 <option value="6">6</option>
                                 <option value="7">7</option>
                                 <option value="8">8</option>
@@ -92,7 +81,7 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <input type="number" id="nbr_jeux" name="nbr_jeux" placeholder="Nombre de jeux..."/>
+                            <input type="number" id="nbr_jeux" name="nbr_jeux" placeholder="Nombre de jeux:"/>
                             <input type="hidden" id="img64" />
                         </form>
 
@@ -110,16 +99,17 @@
                 </div>
                 <div id="content-4" class="content">
                     <div id="ident">
-                        <input type="text" id="login" placeholder="Login" />
-                        <input type="password" id="pass" placeholder="Mot de passe" />
+                        <input type="text" id="login" placeholder="Login:" />
+                        <input type="password" id="pass" placeholder="Mot de passe:" />
                         <input type="checkbox" id="remember" checked="checked" /> Se souvenir de moi
                         <button id="ident_button">Identification</button> 
                         <a href="" id="forget_pass">J'ai oublié mon mot de passe</a>
                         <button id="register_button">Inscription</button> 
                     </div>
                 </div>
-
-                <div id="content-5" class="content hidden">
+            </div>
+        </div>
+        <div id="content-aire" class="slideIn slideOff">
                     <div id="container_playground" class="playground">
                         <h1 id="titre_playground"></h1>
                         <img id="playground_img" src="img/imagedefaut.png"/>
@@ -136,50 +126,45 @@
                             <span id='note-5' class="casquette empty right big"></span>
                         </span>
                         <span id="note_value"></span>
-                        <p id="description_playground"></p>
                         <div id="caract">
+                            <h3>Caractéristiques</h3>
                             <ul>
                                 <li id="surface_playground">Surface: </li>
                                 <li id="age_playground">Age: </li>
                                 <li id="nbr_playground">Nombre de jeux: </li>
                             </ul>
+                            
+                        </div>
+                        <div id="description">
+                            <h3>Description</h3>
+                             <p id="description_playground"></p>
                         </div>
                         <div id="vote_data" class="hidden">
-
-
+                            <button id="button_moins" class="button_vote">-</button>
+                            <span id="note_vote">
+                                <span id='note_vote-0.5' class="casquette full left big"></span>
+                                <span id='note_vote-1' class="casquette empty right big"></span>
+                                <span id='note_vote-1.5' class="casquette empty left big"></span>
+                                <span id='note_vote-2' class="casquette empty right big"></span>
+                                <span id='note_vote-2.5' class="casquette empty left big"></span>
+                                <span id='note_vote-3' class="casquette empty right big"></span>
+                                <span id='note_vote-3.5' class="casquette empty left big"></span>
+                                <span id='note_vote-4' class="casquette empty right big"></span>
+                                <span id='note_vote-4.5' class="casquette empty left big"></span>
+                                <span id='note_vote-5' class="casquette empty right big"></span>
+                            </span>
+                            <input type="hidden" id="note_hidden" value="0" />
+                            <button id="button_plus" class="button_vote">+</button>
+                            <button id="send_vote">Voter</button>
+                            
+                             <textarea id="comment_text" placeholder="Votre commentaire (500 caractères max"></textarea>
+                            <button id="button_comment">Commenter</button>
                         </div>
-                        <!--<button id="comment_show">Voir les commentaires</button>-->
-                        <span>Vos commentaires</span> 
-                        <div id="comments"></div>
-                    </div>
-                    
-                    
-                    <div id="footer" class="bottom">
-                        <button id="footer_vote">Votez</button>
-                        <button id="footer_comment">Commentez</button>
+                        <button id="button_show_comment">Voir les commentaires</button>
+                        <div id="comments" class="hidden"></div>
                     </div>
                 </div>
-                <!--<div id="screen_vote" class="screen off-screen">
-                        <select id="select_note" name="select_note">
-                            <option value="0.5">0.5</option>
-                            <option value="1">1</option>
-                            <option value="1.5">1.5</option>
-                            <option value="2">2</option>
-                            <option value="2.5">2.5</option>
-                            <option value="3">3</option>
-                            <option value="3.5">3.5</option>
-                            <option value="4">4</option>
-                            <option value="4.5">4.5</option>
-                            <option value="5">5</option>
-                        </select>
-                        <button id="button_vote">Votez</button>
-                </div>-->
-
-
-            </div>
-        </div>
-
-        <div id="spinner" class="hidden"></div>
+        <div id="spinner" class="spinner hidden"></div>
         <script type="text/javascript" src="js/fastclick.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/prototype.js"></script>

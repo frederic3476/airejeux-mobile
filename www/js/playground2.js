@@ -3,6 +3,7 @@ var id;
 var url_img = "http://www.airejeux.com/uploads/aires/";
 var image;
 var comments =[];
+var note;
 
 app.playground = {
     elems: {
@@ -17,12 +18,29 @@ app.playground = {
 	},
         
         bindEvents: function () {
-            //document.getElementById("button_vote").addEventListener("touchend", app.playground.vote, false);
-            //document.getElementById("button_comment").addEventListener("touchend", app.playground.comment, false);
-            //document.getElementById("favorite").addEventListener("touchend", app.playground.addFavorite, false);
-            document.getElementById("footer_vote").addEventListener("touchend", function(){
-            document.getElementById("screen_vote").classList.remove('off-screen');
+            document.getElementById("send_vote").addEventListener("touchend", app.playground.vote, false);
+            document.getElementById("button_moins").addEventListener("touchstart", function(){
+                if (note>0.5){
+                    document.getElementById("note_vote-"+note).classList.remove('full');
+                    document.getElementById("note_vote-"+note).classList.add('empty');
+                    note =  note-0.5;
+                }
             }, false);
+            document.getElementById("button_plus").addEventListener("touchstart", function(){
+                
+                if (note<5){
+                    note = note+0.5;
+                    document.getElementById("note_vote-"+note).classList.remove('empty');
+                    document.getElementById("note_vote-"+note).classList.add('full');
+                }
+            }, false);
+            
+            document.getElementById("button_show_comment").addEventListener("touchend", app.playground.showComments, false);
+            document.getElementById("button_comment").addEventListener("touchend", app.playground.comment, false);
+            //document.getElementById("favorite").addEventListener("touchend", app.playground.addFavorite, false);
+            //document.getElementById("footer_vote").addEventListener("touchend", function(){
+            //document.getElementById("screen_vote").classList.remove('off-screen');
+            //}, false);
             /*document.getElementById("footer_comment").addEventListener("click", function(){
                 document.getElementById("screen_comment").classList.remove('off-screen2');
             }, false);*/
@@ -49,11 +67,15 @@ app.playground = {
                         item.classList.add('empty');
                     }
                 });
+                
+            document.getElementById('button_show_comment').classList.remove('hidden');
+            document.getElementById("comments").classList.add('hidden'); 
+            document.getElementById("comment_text").value = "";
         },
         
         show: function(from){
-            // from = 1 (network) 
-            app.playground.bindEvents();
+            // from = 1 (network)
+            note = 0.5;
             app.playground.clear();
             if (!sessionStorage.getItem("playground_id"))
             {
@@ -81,9 +103,14 @@ app.playground = {
                                                     average : data.average,
                                                     file_name : (data.file_name?data.file_name:null)
                                                 };
+                                                if (document.getElementById("content-aire").classList.contains("slideOff")
+                                                        && !document.getElementById('spinner').classList.contains("hidden")){
+                                                    document.getElementById("content-aire").classList.remove("slideOff");
+                                                    document.getElementById('spinner').classList.add("hidden");
+                                                }
                                                 app.playground.applyData(result);
-                                                app.playground.addComments(data.comments);   
-                                               
+                                                app.playground.addComments(data.comments); 
+                                                
                                             });
                                     }
                                     else{
@@ -104,13 +131,17 @@ app.playground = {
                                         httpReq.getJSON(api_url+"playgrounds/"+id, 
                                             function(status, data) {
                                                 app.playground.addComments(data.comments);  
+                                                if (document.getElementById("content-aire").classList.contains("slideOff")
+                                                        && !document.getElementById('spinner').classList.contains("hidden")){
+                                                    document.getElementById("content-aire").classList.remove("slideOff");
+                                                    document.getElementById('spinner').classList.add("hidden");
+                                                }
                                             });
                                     }
                                 }); 
                 
             });
-            //app.playground.addVoteSystem();
-                    
+            app.playground.addVoteSystem();
             
         }
         },
@@ -180,7 +211,7 @@ app.playground = {
         
         vote: function(){
             var data = {
-                score: document.getElementById("select_note").value,
+                score: note,
                 aire_id: id
             };
             cordovaHTTP.post(api_url+"votes", data,{"X-WSSE": token}, function(response) {
@@ -194,7 +225,7 @@ app.playground = {
         
         comment: function(){
             var data = {
-                texte: document.getElementById("comment").value,
+                texte: document.getElementById("comment_text").value,
                 aire_id: id
             };
             cordovaHTTP.post(api_url+"comments", data,{"X-WSSE": token}, function(response) {
@@ -222,8 +253,7 @@ app.playground = {
         },
         
         onPictureFail: function (message) {
-            //navigator.notification.alert('Failed because: ' + message, function () {
-            //});
+            console.log('Failed image');
         },
         
         onConfirmPicture: function(buttonIndex){
@@ -248,7 +278,7 @@ app.playground = {
         }
         
 };
-
+app.playground.bindEvents();
 
 
 
